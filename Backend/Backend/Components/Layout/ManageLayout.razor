@@ -1,0 +1,16 @@
+﻿@inherits LayoutComponentBase
+@layout AccountLayout
+
+<sectio class="account-details">
+    <div class="container">
+        <aside>
+           <Backend.Components.Sections.AccountProfileAvatar />
+            <ManageNavMenu />
+        </aside>
+    </div>
+
+    <div class="content">
+        @Body
+    </div>
+</sectio>
+

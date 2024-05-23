@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Backend.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@rendermode InteractiveAuto
+
+    <nav>
+        <NavLink href="/account/details" class="btn-gray" Match="NavLinkMatch.All"><span>Account Details</span></NavLink>
+        <NavLink @onclick = "HandleSignOut" class="btn-nav"><span>Sign Out</span></NavLink>
+    </nav>
+
+@code {
+
+    private async Task HandleSignOut()
+    {
+        await SignInManager.SignOutAsync();
+    }
+}
