@@ -4,13 +4,30 @@
 <sectio class="account-details">
     <div class="container">
         <aside>
-           <Backend.Components.Sections.AccountProfileAvatar />
+           <Backend.Components.Sections.AccountProfileAvatar user = "user" />
             <ManageNavMenu />
         </aside>
     </div>
-
     <div class="content">
         @Body
     </div>
 </sectio>
 
+@code{
+    [CascadingParameter]
+    private ApplicationUser user { get; set; } = default!;
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserDataAysnc();
+    }
+
+    private async Task LoadUserDataAysnc()
+    {
+        user = await UserManager.GetUserAsync(HttpContext.User) ?? null!;
+    }
+    
+}
